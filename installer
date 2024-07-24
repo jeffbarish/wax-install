@@ -45,7 +45,7 @@ rm -f ~/.config/gtk-3.0/gtk.css
 
 [ ! -d ~/wax/recordings ] && cp -r recordings ~/wax
 ln -sf ~/wax/recordings ~/wax-config/recordings
-mkdir ~/wax/recordings/{images,documents}
+mkdir ~/wax/recordings/{images,documents,sound}
 
 echo -e "\nexport GTK_THEME=Materia-Manjaro-Dark-gtk" >> ~/.bashrc
 echo "alias va='pushd ~/.venv/bin; source activate; popd'" >> ~/.bash_aliases

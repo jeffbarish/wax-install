@@ -53,7 +53,6 @@ export GTK_THEME=Materia-Manjaro-Dark-gtk
 alias va='pushd ~/.venv/bin; source activate; popd'
 
 mkdir -p ~/wax/.config/{log,queuefiles,transfer}
-cp -r completers ~/wax/.config
 
 EOF
 

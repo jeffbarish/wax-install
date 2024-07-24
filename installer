@@ -61,3 +61,5 @@ chown root:root waxstarter
 cp waxstarter /usr/local/bin/wax
 ln /usr/local/bin/wax /usr/local/bin/waxconfig
 
+echo "Installation complete"
+echo -e "\nType \"wax\" to run Wax or \"waxconfig\" to run WaxConfig"

@@ -1,0 +1,39 @@
+#!/bin/python
+
+"""Start either wax or waxconfig, but assure that neither is already
+running."""
+
+import fcntl
+import os
+import sys
+
+# Top directory for both wax and waxconfig.
+TOPDIR = os.path.expanduser('~')
+
+# Permit only one instance of this program to run at a time.
+starter_file_path = os.path.realpath(sys.argv[0])
+run_once_fd = open(starter_file_path, 'r')
+try:
+    fcntl.flock(run_once_fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+except:
+    with open(os.path.join(TOPDIR, '.running'), 'r') as fo:
+        sys.exit(f'{fo.read()} is running')
+
+
+os.chdir(TOPDIR)
+if os.path.basename(sys.argv[0]) == 'waxconfig':
+    with open('.running', 'wt') as fo:
+        fo.write('WaxConfig')
+    os.chdir('wax-config')
+    command = ['python', 'waxconfig.py']
+else:
+    with open('.running', 'wt') as fo:
+        fo.write('Wax')
+    os.chdir('wax')
+    command = ['python', 'wax.py']
+
+command.extend(sys.argv[1:])
+os.system(' '.join(command))
+
+os.remove(os.path.join(TOPDIR, '.running'))
+

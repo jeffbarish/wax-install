@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# Run script as root for apt install.
+if [ $(whoami) != "root" ]
+then
+    echo "You must run this script as root."
+    exit 1
+fi
+
+apt install -y gir1.2-webkit2-4.0 \
+    gir1.2-poppler-0.18 \
+    python3-gst-1.0 \
+    python3-gdbm \
+    python3-libdiscid \
+    python3-pip \
+    python3-venv \
+    python3-gi-cairo \
+    gstreamer1.0-plugins-bad \
+    sox
+
+# Prepare to drop privilege to user.
+user=$(who -m | awk '{ print $1 }')
+echo -e "\nWill install wax as user $user. Type return to proceed or ^c to exit."
+read
+
+sudo -i -u $user bash << EOF
+
+cd ~/wax-install
+
+# Create virtual environment in wax and install requirements.
+echo "Creating virtual environment"
+python3.11 -m venv ~/.venv
+source ~/.venv/bin/activate
+
+# Set include-system-site-packages = true
+cp pyvenv.cfg ~/.venv
+
+echo "Installing requirements"
+python3.11 -m pip install -r requirements.txt
+
+[ ! -d ~/.themes ] && mkdir ~/.themes
+rm -rf ~/.themes/Materia-Manjaro-Dark-gtk
+cp -r Materia-Manjaro-Dark-gtk ~/.themes
+rm -f ~/.config/gtk-3.0/gtk.css
+
+cp -r recordings ~/wax
+ln -s ~/wax/recordings ~/wax-config/recordings
+
+echo -e "\nexport GTK_THEME=Materia-Manjaro-Dark-gtk" >> ~/.bashrc
+echo "alias va='pushd ~/.venv/bin; source activate; popd'" >> ~/.bash_aliases
+
+export GTK_THEME=Materia-Manjaro-Dark-gtk
+alias va='pushd ~/.venv/bin; source activate; popd'
+
+mkdir -p ~/wax/.config/{log,queuefiles,transfer}
+cp -r completers ~/wax/.config
+
+EOF
+
+chown root:root waxstarter
+cp waxstarter /usr/local/bin/wax
+ln /usr/local/bin/wax /usr/local/bin/waxconfig
+

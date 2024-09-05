@@ -7,7 +7,7 @@ then
     exit 1
 fi
 
-apt install -y gir1.2-webkit2-4.0 \
+apt install -y gir1.2-webkit2-4.1 \
     gir1.2-poppler-0.18 \
     python3-gst-1.0 \
     python3-gdbm \
@@ -29,14 +29,14 @@ cd ~/wax-install
 
 # Create virtual environment in wax and install requirements.
 echo "Creating virtual environment"
-python3.11 -m venv ~/.venv
+python3 -m venv ~/.venv
 source ~/.venv/bin/activate
 
 # Set include-system-site-packages = true
 cp pyvenv.cfg ~/.venv
 
 echo "Installing requirements"
-python3.11 -m pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 
 [ ! -d ~/.themes ] && mkdir ~/.themes
 rm -rf ~/.themes/Materia-Manjaro-Dark-gtk

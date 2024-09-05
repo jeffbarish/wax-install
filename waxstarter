@@ -8,7 +8,15 @@ import os
 import sys
 
 # Top directory for both wax and waxconfig.
-TOPDIR = os.path.expanduser('~')
+HOME = os.path.expanduser('~')
+
+# The file gtk.css appears after every reboot. It prevents proper
+# setting of the theme, so remove it.
+gtk_file = os.path.join(HOME, '.config/gtk-3.0/gtk.css')
+try:
+    os.remove(gtk_file)
+except FileNotFoundError:
+    pass
 
 # Permit only one instance of this program to run at a time.
 starter_file_path = os.path.realpath(sys.argv[0])
@@ -16,24 +24,24 @@ run_once_fd = open(starter_file_path, 'r')
 try:
     fcntl.flock(run_once_fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
 except:
-    with open(os.path.join(TOPDIR, '.running'), 'r') as fo:
+    with open(os.path.join(HOME, '.running'), 'r') as fo:
         sys.exit(f'{fo.read()} is running')
 
 
-os.chdir(TOPDIR)
+os.chdir(HOME)
 if os.path.basename(sys.argv[0]) == 'waxconfig':
     with open('.running', 'wt') as fo:
         fo.write('WaxConfig')
     os.chdir('wax-config')
-    command = ['python', 'waxconfig.py']
+    command = ['GTK_THEME=Materia-Manjaro-Dark-gtk', 'python', 'waxconfig.py']
 else:
     with open('.running', 'wt') as fo:
         fo.write('Wax')
     os.chdir('wax')
-    command = ['python', 'wax.py']
+    command = ['GTK_THEME=Materia-Manjaro-Dark-gtk', 'python', 'wax.py']
 
 command.extend(sys.argv[1:])
 os.system(' '.join(command))
 
-os.remove(os.path.join(TOPDIR, '.running'))
+os.remove(os.path.join(HOME, '.running'))
 

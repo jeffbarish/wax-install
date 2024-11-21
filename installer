@@ -50,9 +50,6 @@ mkdir ~/wax/recordings/{images,documents,sound}
 echo -e "\nexport GTK_THEME=Materia-Manjaro-Dark-gtk" >> ~/.bashrc
 echo "alias va='pushd ~/.venv/bin; source activate; popd'" >> ~/.bash_aliases
 
-export GTK_THEME=Materia-Manjaro-Dark-gtk
-alias va='pushd ~/.venv/bin; source activate; popd'
-
 mkdir -p ~/wax/.config/{log,queuefiles,transfer}
 
 EOF
@@ -62,4 +59,6 @@ cp waxstarter /usr/local/bin/wax
 ln /usr/local/bin/wax /usr/local/bin/waxconfig
 
 echo "Installation complete"
+echo -e "\nType \"source ~/.bash_aliases\" to add va to your aliases,"
+echo -e "and then type \"va\" to activate the virtual environment."
 echo -e "\nType \"wax\" to run Wax or \"waxconfig\" to run WaxConfig"

@@ -18,9 +18,8 @@ apt install -y gir1.2-webkit2-4.0 \
     python3-fuzzywuzzy \
     python3-levenshtein \
     python3-musicbrainzngs \
+    python3-mutagen \
     python3-unidecode
-
-python3 -m pip install discid --break-system-packages
 
 # Prepare to drop privilege to user.
 user=$(who -m | awk '{ print $1 }')
@@ -29,11 +28,13 @@ read
 
 sudo -i -u $user bash << EOF
 
+python3 -m pip install discid --break-system-packages
+
 cd ~/wax-install
 
 [ ! -d ~/.themes ] && mkdir ~/.themes
 rm -rf ~/.themes/Materia-Manjaro-Dark-gtk
-mv -r Materia-Manjaro-Dark-gtk ~/.themes
+mv Materia-Manjaro-Dark-gtk ~/.themes
 rm -f ~/.config/gtk-3.0/gtk.css
 
 mv recordings ~/wax

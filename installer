@@ -7,16 +7,20 @@ then
     exit 1
 fi
 
-apt install -y gir1.2-webkit2-4.1 \
+apt install -y gir1.2-webkit2-4.0 \
     gir1.2-poppler-0.18 \
+    sox \
     python3-gst-1.0 \
     python3-gdbm \
-    python3-pip \
-    python3-venv \
+    python3-libdiscid \
     python3-gi-cairo \
     gstreamer1.0-plugins-bad \
-    sox \
-    libdiscid0
+    python3-fuzzywuzzy \
+    python3-levenshtein \
+    python3-musicbrainzngs \
+    python3-unidecode
+
+python3 -m pip install discid --break-system-packages
 
 # Prepare to drop privilege to user.
 user=$(who -m | awk '{ print $1 }')
@@ -27,38 +31,21 @@ sudo -i -u $user bash << EOF
 
 cd ~/wax-install
 
-# Create virtual environment in wax and install requirements.
-echo "Creating virtual environment"
-python3 -m venv ~/.venv
-source ~/.venv/bin/activate
-
-# Set include-system-site-packages = true
-cp pyvenv.cfg ~/.venv
-
-echo "Installing requirements"
-python3 -m pip install -r requirements.txt
-
 [ ! -d ~/.themes ] && mkdir ~/.themes
 rm -rf ~/.themes/Materia-Manjaro-Dark-gtk
-cp -r Materia-Manjaro-Dark-gtk ~/.themes
+mv -r Materia-Manjaro-Dark-gtk ~/.themes
 rm -f ~/.config/gtk-3.0/gtk.css
 
-cp -r recordings ~/wax
+mv recordings ~/wax
 ln -s ~/wax/recordings ~/wax-config/recordings
 mkdir ~/wax/recordings/{images,documents,sound}
 
-echo -e "\nexport GTK_THEME=Materia-Manjaro-Dark-gtk" >> ~/.bashrc
-echo "alias va='pushd ~/.venv/bin; source activate; popd'" >> ~/.bash_aliases
-
 mkdir -p ~/wax/.config/{log,queuefiles,transfer}
+mv completers ~/wax/.config
 
 EOF
 
 chown root:root waxstarter
-cp waxstarter /usr/local/bin/wax
+mv waxstarter /usr/local/bin/wax
 ln /usr/local/bin/wax /usr/local/bin/waxconfig
 
-echo "Installation complete"
-echo -e "\nType \"source ~/.bash_aliases\" to add va to your aliases,"
-echo -e "and then type \"va\" to activate the virtual environment."
-echo -e "\nType \"wax\" to run Wax or \"waxconfig\" to run WaxConfig"

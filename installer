@@ -14,7 +14,6 @@ apt install -y gir1.2-webkit2-4.0 \
     python3-gdbm \
     python3-libdiscid \
     python3-gi-cairo \
-    gstreamer1.0-plugins-bad \
     python3-fuzzywuzzy \
     python3-levenshtein \
     python3-musicbrainzngs \
@@ -27,13 +26,18 @@ read
 
 sudo -i -u $user bash << EOF
 
-python3 -m pip install discid
+# Create virtual environment in wax and install requirements.
+echo "Creating virtual environment"
+python3.11 -m venv ~/.venv
 
-cd ~/wax-install
+echo "include-system-site-packages = true" >> ~/.venv/pyvenv.cfg
+
+echo "Installing requirements"
+python3.11 -m pip install -r requirements.txt
 
 [ ! -d ~/.themes ] && mkdir ~/.themes
 rm -rf ~/.themes/Materia-Manjaro-Dark-gtk
-mv -r Materia-Manjaro-Dark-gtk ~/.themes
+mv Materia-Manjaro-Dark-gtk ~/.themes
 rm -f ~/.config/gtk-3.0/gtk.css
 
 mv recordings ~/wax

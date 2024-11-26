@@ -14,6 +14,7 @@ apt install -y gir1.2-webkit2-4.0 \
     python3-pip \
     python3-venv \
     python3-gi-cairo \
+    libdiscid0 \
     sox
 
 # Prepare to drop privilege to user.
@@ -23,11 +24,13 @@ read
 
 sudo -i -u $user bash << EOF
 
+cd ~/wax-install
+
 # Create virtual environment in wax and install requirements.
 echo "Creating virtual environment"
 python3.11 -m venv ~/.venv
 
-echo "include-system-site-packages = true" >> ~/.venv/pyvenv.cfg
+cp pyvenv.cfg ~/.venv/pyvenv.cfg
 
 echo "Installing requirements"
 python3.11 -m pip install -r requirements.txt

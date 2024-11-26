@@ -38,7 +38,7 @@ else:
     with open('.running', 'wt') as fo:
         fo.write('Wax')
     os.chdir('wax')
-    command = ['GTK_THEME=Materia-Manjaro-Dark-gtk', 'p~/.venv/bin/ython', 'wax.py']
+    command = ['GTK_THEME=Materia-Manjaro-Dark-gtk', '~/.venv/bin/python', 'wax.py']
 
 command.extend(sys.argv[1:])
 os.system(' '.join(command))

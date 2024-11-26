@@ -54,3 +54,4 @@ chown root:root waxstarter
 mv waxstarter /usr/local/bin/wax
 ln /usr/local/bin/wax /usr/local/bin/waxconfig
 
+echo "Type \"wax\" to start Wax or \"waxconfig\" to start WaxConfig"

@@ -1,8 +1,8 @@
 Clone wax, wax-config, and wax-install (from the home directory):
 
-git clone https://github.com/jeffbarish/wax.git
-git clone https://github.com/jeffbarish/wax-config.git
-git clone https://github.com/jeffbarish/wax-install.git
+    git clone https://github.com/jeffbarish/wax.git
+    git clone https://github.com/jeffbarish/wax-config.git
+    git clone https://github.com/jeffbarish/wax-install.git
 
 cd into wax-install and run the program "installer" as root:
 

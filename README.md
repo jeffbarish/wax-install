@@ -6,7 +6,7 @@ Clone wax, wax-config, and wax-install (from the home directory):
 
 cd into wax-install and run the program "installer" as root:
 
-sudo ./installer
+    sudo ./installer
 
 The installer
 

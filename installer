@@ -18,11 +18,10 @@ apt install -y gir1.2-webkit2-4.1 \
     sox
 
 # Prepare to drop privilege to user.
-user=$(who -m | awk '{ print $1 }')
-echo -e "\nWill install wax as user $user. Type return to proceed or ^c to exit."
+echo -e "\nWill install wax as user $USER. Type return to proceed or ^c to exit."
 read
 
-sudo -i -u $user bash << EOF
+sudo -i -u $USER bash << EOF
 
 cd ~/wax-install
 

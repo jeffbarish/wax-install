@@ -30,7 +30,7 @@ When the installer finishes, type "wax" to run wax or "waxconfig" to run waxconf
 
 I tested the code on Ubuntu 24.04 running on an Intel processor and on Debian GNU/Linux 12 (Raspberry Pi OS) running on Raspberry Pi 4B. Note that you will need GTK and GStreamer on whatever OS you choose.
 
-You can also install wax on Windows 11 using WSL 2. However, there are limitations. It is not possible to access a CD-drive from WSL, so ripping in Wax on WSL is not possible. Instead, rip using Media Player, put the sound files in the transfer folder of Wax, and import them. Media Player does not embed cover art, so you will need to find cover art (at Amazon, for example) and copy-and-paste it into Wax.
+You can also install wax on Windows 11 using WSL 2. However, there are limitations. It is not possible to access a CD-drive as a device from WSL, so ripping in Wax on WSL is not possible. Instead, rip using Media Player, put the sound files in the transfer folder of Wax, and import them. Media Player does not embed cover art, so you will need to find cover art (at Amazon, for example) and copy-and-paste it into Wax.
 
 Do not run installer over an existing installation.
 

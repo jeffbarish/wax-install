@@ -1,30 +1,5 @@
 #!/bin/bash
 
-# Run script as root for apt install.
-if [ $(whoami) != "root" ]
-then
-    echo "You must run this script as root."
-    exit 1
-fi
-
-apt install -y gir1.2-webkit2-4.1 \
-    gir1.2-poppler-0.18 \
-    python3-gst-1.0 \
-    python3-gdbm \
-    python3-pip \
-    python3-venv \
-    python3-gi-cairo \
-    libdiscid0 \
-    sox
-
-# Prepare to drop privilege to user.
-echo -e "\nWill install wax as user $USER. Type return to proceed or ^c to exit."
-read
-
-sudo -i -u $USER bash << EOF
-
-cd ~/wax-install
-
 # Create virtual environment in wax and install requirements.
 echo "Creating virtual environment"
 python3 -m venv ~/.venv
@@ -42,15 +17,8 @@ rm -f ~/.config/gtk-3.0/gtk.css
 
 mv recordings ~/wax
 ln -s ~/wax/recordings ~/wax-config/recordings
-mkdir ~/wax/recordings/{images,documents,sound}
 
 mkdir -p ~/wax/.config/{log,queuefiles,transfer}
 mv completers ~/wax/.config
-
-EOF
-
-chown root:root waxstarter
-mv waxstarter /usr/local/bin/wax
-ln /usr/local/bin/wax /usr/local/bin/waxconfig
 
 echo "Type \"wax\" to start Wax or \"waxconfig\" to start WaxConfig"

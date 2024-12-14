@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Run script as root for apt install.
+if [ $(whoami) != "root" ]
+then
+    echo "You must run this script as root."
+    exit 1
+fi
+
+apt install -y gir1.2-webkit2-4.1 \
+    gir1.2-poppler-0.18 \
+    python3-gst-1.0 \
+    python3-gdbm \
+    python3-pip \
+    python3-venv \
+    python3-gi-cairo \
+    libdiscid0 \
+    sox
+
+chown root:root waxstarter
+mv waxstarter /usr/local/bin/wax
+ln /usr/local/bin/wax /usr/local/bin/waxconfig

@@ -4,23 +4,33 @@ Clone wax, wax-config, and wax-install (from the home directory):
     git clone https://github.com/jeffbarish/wax-config.git
     git clone https://github.com/jeffbarish/wax-install.git
 
-cd into wax-install and run the program "installer" as root:
+cd into wax-install and run the program "installer.root" as root:
 
-    sudo ./installer
+    sudo ./installer.root
 
-The installer
+Run installer as youself:
+
+    ./installer
+
+installer.root:
 
 - runs apt to install several packages. 
 
 - puts starter scripts for wax and waxconfig in /usr/local/bin.
 
+installer:
+
 - puts the theme in ~/.themes.
 
 - creates a virtual environment in ~/.venv and installs several packages.
 
+- creates wax subdirectories in ~/wax/.config
+
 When the installer finishes, type "wax" to run wax or "waxconfig" to run waxconfig.
 
 I tested the code on Ubuntu 24.04 running on an Intel processor and on Debian GNU/Linux 12 (Raspberry Pi OS) running on Raspberry Pi 4B. Note that you will need GTK and GStreamer on whatever OS you choose.
+
+You can also install wax on Windows 11 using WSL 2. However, there are limitations. It is not possible to access a CD-drive from WSL, so ripping in Wax on WSL is not possible. Instead, rip using Media Player, put the sound files in the transfer folder of Wax, and import them. Media Player does not embed cover art, so you will need to find cover art (at Amazon, for example) and copy-and-paste it into Wax.
 
 Do not run installer over an existing installation.
 

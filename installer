@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Do not run script as root for apt install.
+if [ $(whoami) = "root" ]
+then
+    echo "You must not run this script as root."
+    exit 1
+fi
+
 # Create virtual environment in wax and install requirements.
 echo "Creating virtual environment"
 python3 -m venv ~/.venv

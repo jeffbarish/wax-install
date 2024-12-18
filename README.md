@@ -14,13 +14,13 @@ Run installer as youself:
 
 These scripts perform the following functions:
 
-*installer.root*:
+**installer.root**:
 
 - runs apt to install several packages. 
 
 - puts starter scripts for wax and waxconfig in /usr/local/bin.
 
-*installer*:
+**installer**:
 
 - puts the theme in ~/.themes.
 

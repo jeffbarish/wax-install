@@ -25,7 +25,7 @@ rm -f ~/.config/gtk-3.0/gtk.css
 mv recordings ~/wax
 ln -s ~/wax/recordings ~/wax-config/recordings
 
-mkdir -p ~/wax/.config/{log,queuefiles,transfer}
+mkdir -p ~/wax/.config/{log,queuefiles}
 mv completers ~/wax/.config
 
 echo "Type \"wax\" to start Wax or \"waxconfig\" to start WaxConfig"

@@ -23,6 +23,7 @@ mv Materia-Manjaro-Dark-gtk ~/.themes
 rm -f ~/.config/gtk-3.0/gtk.css
 
 mv recordings ~/wax
+mkdir ~/wax/recordings/{transfer,images,documents,sound}
 ln -s ~/wax/recordings ~/wax-config/recordings
 
 mkdir -p ~/wax/.config/{log,queuefiles}

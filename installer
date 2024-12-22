@@ -29,4 +29,6 @@ ln -s ~/wax/recordings ~/wax-config/recordings
 mkdir -p ~/wax/.config/{log,queuefiles}
 mv completers ~/wax/.config
 
+echo "export WEBKIT_DISABLE_COMPOSITING_MODE=1" >> ~/.bashrc
+
 echo "Type \"wax\" to start Wax or \"waxconfig\" to start WaxConfig"
